@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Speed Reader",
+  "version": "1.0.0",
+  "description": "RSVP speed reading overlay with configurable WPM for any text on the web",
+  "permissions": ["activeTab", "contextMenus", "storage"],
+  "action": {
+    "default_title": "Speed Reader",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
