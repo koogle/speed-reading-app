@@ -51,13 +51,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 400px;
+  min-width: 600px;
+  width: 600px;
+  height: 60px;
 }
 
 /* The focus line indicator */
 .speed-reader-focus-line {
   position: absolute;
   top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 2px;
   height: 8px;
   background: #ef4444;
@@ -66,27 +70,39 @@
 .speed-reader-focus-line-bottom {
   position: absolute;
   bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 2px;
   height: 8px;
   background: #ef4444;
 }
 
 .speed-reader-word {
+  position: absolute;
   font-size: 48px;
   font-weight: 500;
   color: #fff;
   letter-spacing: 2px;
   white-space: nowrap;
   font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  display: flex;
+  align-items: center;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .speed-reader-word .orp {
   color: #ef4444;
 }
 
-.speed-reader-word .before-orp,
+.speed-reader-word .before-orp {
+  color: #fff;
+  text-align: right;
+}
+
 .speed-reader-word .after-orp {
   color: #fff;
+  text-align: left;
 }
 
 /* Progress bar */

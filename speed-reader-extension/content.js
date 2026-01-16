@@ -290,11 +290,7 @@ class SpeedReader {
   }
 
   updateFocusLines() {
-    // Center the focus lines
-    this.focusLineTop.style.left = '50%';
-    this.focusLineTop.style.transform = 'translateX(-50%)';
-    this.focusLineBottom.style.left = '50%';
-    this.focusLineBottom.style.transform = 'translateX(-50%)';
+    // Focus lines are now centered via CSS
   }
 
   togglePlay() {
@@ -358,8 +354,26 @@ class SpeedReader {
     const orp = word.charAt(orpIndex);
     const after = word.substring(orpIndex + 1);
 
-    // Use padding to center the ORP character
+    // Render the word parts
     this.wordDisplay.innerHTML = `<span class="before-orp">${before}</span><span class="orp">${orp}</span><span class="after-orp">${after}</span>`;
+
+    // Calculate offset to center the ORP character
+    // We need to position the word so the center of the ORP is at the center of the container
+    const beforeSpan = this.wordDisplay.querySelector('.before-orp');
+    const orpSpan = this.wordDisplay.querySelector('.orp');
+    const container = this.wordDisplay.parentElement;
+
+    if (beforeSpan && orpSpan && container) {
+      const containerWidth = container.offsetWidth;
+      const beforeWidth = beforeSpan.offsetWidth;
+      const orpWidth = orpSpan.offsetWidth;
+
+      // Calculate position: center of container minus (before width + half of ORP width)
+      const leftPosition = (containerWidth / 2) - beforeWidth - (orpWidth / 2);
+
+      // Position the word so ORP center aligns with container center
+      this.wordDisplay.style.left = `${leftPosition}px`;
+    }
 
     // Update progress
     const progress = ((this.currentIndex + 1) / this.words.length) * 100;
